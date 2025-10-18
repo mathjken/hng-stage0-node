@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 
 // GET /me endpoint
-
 app.get("/me", async (req, res) => {
   try {
     const response = await axios.get("https://catfact.ninja/fact", { timeout: 5000 });
@@ -31,10 +30,8 @@ app.get("/me", async (req, res) => {
   }
 });
 
-
+// --- FIX APPLIED HERE ---
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+const HOST = '0.0.0.0'; // ⬅️ Explicitly bind to 0.0.0.0 for external access
 
-
-
-
+app.listen(PORT, HOST, () => console.log(`✅ Server running on http://${HOST}:${PORT}`));
